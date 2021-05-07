@@ -34,6 +34,9 @@ ObjectGrabber::ObjectGrabber(ros::NodeHandle* nodehandle) : nh_(*nodehandle),
         t_test += 0.5;
         if (t_test > 2.0) ROS_WARN("can't connect to service object_manip_query_svc; is it running?");
     }
+
+
+
     
     gripper_client_ = nh_.serviceClient<generic_gripper_services::genericGripperInterface>("generic_gripper_svc");
     
