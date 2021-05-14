@@ -31,7 +31,7 @@ using namespace std;
     const double y_max = 0.15;
     const double yaw_min = 0.0;
     const double yaw_max = 3.14;
-    const double z_height = 0.8;
+    const double z_height = 2;
     
 
 double rand_of_range(double minval, double maxval) {
