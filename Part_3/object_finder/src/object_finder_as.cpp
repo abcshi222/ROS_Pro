@@ -56,15 +56,51 @@ object_finder_as_(nh_, "object_finder_action_service", boost::bind(&ObjectFinder
 //specialized function: DUMMY...JUST RETURN A HARD-CODED POSE; FIX THIS
 
 bool ObjectFinder::find_upright_coke_can(float surface_height, geometry_msgs::PoseStamped &object_pose) {
-    bool found_object = true;
-    object_pose.header.frame_id = "world";
-    object_pose.pose.position.x = 0.680;
-    object_pose.pose.position.y = -0.205;
-    object_pose.pose.position.z = surface_height;
-    object_pose.pose.orientation.x = 0;
-    object_pose.pose.orientation.y = 0;
-    object_pose.pose.orientation.z = 0;
-    object_pose.pose.orientation.w = 1;
+//    bool found_object = true;
+//    object_pose.header.frame_id = "world";
+//    object_pose.pose.position.x = 0.680;
+//    object_pose.pose.position.y = -0.205;
+//    object_pose.pose.position.z = surface_height;
+//    object_pose.pose.orientation.x = 0;
+//    object_pose.pose.orientation.y = 0;
+//    object_pose.pose.orientation.z = 0;
+//    object_pose.pose.orientation.w = 1;
+//    return found_object;
+Eigen::Vector3f plane_normal;
+    double plane_dist;
+    //bool valid_plane;
+    Eigen::Vector3f major_axis;
+    Eigen::Vector3f centroid;
+    bool found_object = true; //should verify this
+    double block_height = 0.035; //this height is specific to the TOY_BLOCK model
+    //if insufficient points in plane, find_plane_fit returns "false"
+    //should do more sanity testing on found_object status
+    //hard-coded search bounds based on a block of width 0.035
+    found_object = pclUtils_.find_plane_fit(0.4, 1, -0.5, 0.5, surface_height + 0.025, surface_height + 0.045, 0.001,
+            plane_normal, plane_dist, major_axis, centroid);
+    // need more here, if want to distinguish different types of blocks;
+    // write a new pclUtils fnc for this. Then set:
+    //result_.object_id = CODE_OF_BLOCK_FOUND;
+    //
+    if (plane_normal(2) < 0) plane_normal(2) *= -1.0; //in world frame, normal must point UP
+    Eigen::Matrix3f R;
+    Eigen::Vector3f y_vec;
+    R.col(0) = major_axis;
+    R.col(2) = plane_normal;
+    R.col(1) = plane_normal.cross(major_axis);
+    Eigen::Quaternionf quat(R);
+    object_pose.header.frame_id = "base_link";
+    object_pose.pose.position.x = centroid(0);
+    object_pose.pose.position.y = centroid(1);
+    //the TOY_BLOCK model has its origin in the middle of the block, not the top surface
+    //so lower the block model origin by half the block height from upper surface
+    object_pose.pose.position.z = centroid(2)-0.5*block_height;
+    //create R from normal and major axis, then convert R to quaternion
+
+    object_pose.pose.orientation.x = quat.x();
+    object_pose.pose.orientation.y = quat.y();
+    object_pose.pose.orientation.z = quat.z();
+    object_pose.pose.orientation.w = quat.w();
     return found_object;
 
 }
