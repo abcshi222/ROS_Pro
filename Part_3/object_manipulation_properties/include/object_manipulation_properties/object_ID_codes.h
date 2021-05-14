@@ -3,7 +3,7 @@
 namespace ObjectIdCodes {
 
     const int TOY_BLOCK_ID = 1000;
-    const int COKE_CAN_UPRIGHT = 1001;
+    const int COKE_CAN_UPRIGHT = 1001;//COKE_CAN_UPRIGHT
     const int TABLE_SURFACE = 1002;
 
     const int ARIAC_PART1 = 2001;

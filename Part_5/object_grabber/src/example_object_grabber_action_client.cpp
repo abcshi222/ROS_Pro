@@ -90,7 +90,7 @@ void grab_object(geometry_msgs::PoseStamped object_pickup_poseStamped) {
     g_got_callback=false; //reset callback-done flag
     object_grabber::object_grabberGoal object_grabber_goal;
     object_grabber_goal.action_code  = object_grabber::object_grabberGoal::GRAB_OBJECT;             // Action to be performed 
-    object_grabber_goal.object_id    = ObjectIdCodes::TOY_BLOCK_ID;                                 // Obj to manipulate                 
+    object_grabber_goal.object_id    = ObjectIdCodes::COKE_CAN_UPRIGHT;                                 // Obj to manipulate
     object_grabber_goal.object_frame = object_pickup_poseStamped;                                   // Obj's current pose
     object_grabber_goal.grasp_option = object_grabber::object_grabberGoal::DEFAULT_GRASP_STRATEGY;  // From above
     object_grabber_goal.speed_factor = 1.0;
@@ -102,7 +102,7 @@ void   dropoff_object(geometry_msgs::PoseStamped object_dropoff_poseStamped) {
     ROS_INFO("sending a dropoff-object command");
     object_grabber::object_grabberGoal object_grabber_goal;
     object_grabber_goal.action_code  = object_grabber::object_grabberGoal::DROPOFF_OBJECT;          // Action to be performed 
-    object_grabber_goal.object_id    = ObjectIdCodes::TOY_BLOCK_ID;                                 // Obj to manipulate                
+    object_grabber_goal.object_id    = ObjectIdCodes::COKE_CAN_UPRIGHT;                                 // Obj to manipulate
     object_grabber_goal.object_frame = object_dropoff_poseStamped;                                  // Obj's current pose
     object_grabber_goal.grasp_option = object_grabber::object_grabberGoal::DEFAULT_GRASP_STRATEGY;  // From above
     object_grabber_goal.speed_factor = 1.0;

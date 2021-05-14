@@ -41,7 +41,7 @@ int32 STRADDLE_OBJECT                   = 103   # plan/execute part of GRAB_OBJE
 int32 SET_SPEED_FACTOR = 10                     # arg: changes trajectory time-scale: > 1.0 ==> slower
 
 ### Strategies:
-int32 DEFAULT_GRASP_STRATEGY            = 0     # executes approach and depart strategies. 
+int32 DEFAULT_GRASP_STRATEGY            = 1     # executes approach and depart strategies.
 
 int32 EXECUTE_PLANNED_MOVE = 100                # accept arm-motion plan and enable its execution
 

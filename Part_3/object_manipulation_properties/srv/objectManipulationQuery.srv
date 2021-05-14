@@ -39,7 +39,7 @@ int32 APPROACH_LATERAL_SLIDE            = 21        # Horizontal Approach
 int32 DEPART_LATERAL_SLIDE              = 22        # Horizontal Departure
 
 int32 GRASP_FROM_ABOVE                  = 0         # grasp from above                              
-int32 GRASP_FROM_SIDE                   = 1         # grasp from side
+int32 GRASP_FROM_SIDE                   = 1         # grasp from side    here
 
 #int32 GRASP_OPTIONS_TOOL_ROTZ          = 1         # grasp options correspond to tool-z rotation, e.g. grabbing a ball, or vacuum-gripper rot about z axis options
 #int32 GRASP_OPTIONS_OBJECT_ROTZ        = 2         # cue that can grab/approach object from arbitrary angle about object z-axis, e.g. power grasp of a bottle does not care about polar angle of grasp
